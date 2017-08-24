@@ -59,6 +59,7 @@ public class WordSearch {
 															// horizontally
 															// right to left
 		int k = 0;
+		String found = ""; // variable used for jUnit test
 		for (int y = 0; y < puzzle.length; y++) {
 			for (int x = puzzle[y].length - 1; x >= 0; x--) {
 				if (searchWord.charAt(k) == puzzle[y][x]) {
@@ -73,18 +74,18 @@ public class WordSearch {
 						k = 0;
 					}
 					System.out.println("");
-
+					found = searchWord;
 				}
 			}
 		}
-		return searchWord;
+		return found;
 	}
 
 	public static String Down(String searchWord) { // searches vertically down
 
 		int k = 0;
 		int j = 0;
-		String found = "";
+		String found = ""; // variable used for jUnit test
 		for (int x = 0; x < puzzle[j].length; x++) {
 			for (int y = 0; y < puzzle.length; y++) {
 				if (searchWord.charAt(k) == puzzle[y][x]) {
@@ -99,7 +100,7 @@ public class WordSearch {
 						k = 0;
 					}
 					System.out.println("");
-					found = searchWord; // variable used for jUnit test
+					found = searchWord;
 				}
 			}
 			j++;
@@ -111,7 +112,7 @@ public class WordSearch {
 
 		int k = 0;
 		int j = 0;
-		String found = "";
+		String found = "";// variable used for jUnit test
 		for (int x = 0; x < puzzle[j].length; x++) {
 			for (int y = puzzle[x].length - 1; y > 0; y--) {
 				if (searchWord.charAt(k) == puzzle[y][x]) {
@@ -126,10 +127,139 @@ public class WordSearch {
 						k = 0;
 					}
 					System.out.println("");
-					found = searchWord; // variable used for jUnit test
+					found = searchWord;
 				}
 			}
 			j++;
+		}
+		return found;
+	}
+
+	public static String DownRight(String searchWord) { // searches diagonally
+														// down and right
+		int k = 0;
+		int j = 0;
+		String found = "";// variable used for jUnit test
+		for (int y = 0; y < puzzle.length; y++) {
+			j = y;
+			for (int x = 0; x < puzzle[y].length; x++) {
+				if (searchWord.charAt(k) == puzzle[j][x]) {
+					k++;
+					j++;
+				} else {
+					k = 0;
+					j = y;
+				}
+				if (k == searchWord.length()) {
+					System.out.print(searchWord + ":" + "\t");
+					j = y;
+					for (int col = x - k + 1; col <= x; col++) {
+						System.out.print(" " + "(" + col + "," + j + ")");
+						k = 0;
+						j++;
+					}
+					j = 0;
+					System.out.println("");
+					found = searchWord; 
+				}
+			}
+		}
+		return found;
+	}
+
+	public static String DownLeft(String searchWord) { // searches diagonally
+		// down and left
+		int k = 0;
+		int j = 0;
+		String found = "";// variable used for jUnit test
+		for (int y = 0; y < puzzle.length; y++) {
+			j = y;
+			for (int x = puzzle[y].length - 1; x > 0; x--) {
+				if (searchWord.charAt(k) == puzzle[j][x]) {
+					k++;
+					j++;
+				} else {
+					k = 0;
+					j = y;
+				}
+				if (k == searchWord.length()) {
+					System.out.print(searchWord + ":" + "\t");
+					j = y;
+					for (int col = x + k - 1; col >= x; col--) {
+						System.out.print(" " + "(" + col + "," + j + ")");
+						k = 0;
+						j++;
+					}
+					j = 0;
+					System.out.println("");
+					found = searchWord;
+				}
+			}
+		}
+		return found;
+	}
+
+	public static String UpRight(String searchWord) { // searches diagonally up
+		// and right
+		int k = 0;
+		int j = 0;
+		String found = "";// variable used for jUnit test
+		for (int y = 0; y < puzzle.length; y++) {
+			j = y;
+			for (int x = 0; x < puzzle[y].length; x++) {
+				if (searchWord.charAt(k) == puzzle[j][x]) {
+					k++;
+					j--;
+				} else {
+					k = 0;
+					j = y;
+				}
+				if (k == searchWord.length()) {
+					System.out.print(searchWord + ":" + "\t");
+					j = y;
+					for (int col = x - k + 1; col <= x; col++) {
+						System.out.print(" " + "(" + col + "," + j + ")");
+						k = 0;
+						j--;
+					}
+					j = 0;
+					System.out.println("");
+					found = searchWord;
+				}
+			}
+		}
+		return found;
+	}
+
+	public static String UpLeft(String searchWord) { // searches diagonally
+		// up and left
+
+		int k = 0;
+		int j = 0;
+		String found = "";// variable used for jUnit test
+		for (int y = 0; y < puzzle.length; y++) {
+			j = y;
+			for (int x = puzzle[y].length - 1; x >= 0; x--) {
+				if (searchWord.charAt(k) == puzzle[j][x]) {
+					k++;
+					j--;
+				} else {
+					k = 0;
+					j = y;
+				}
+				if (k == searchWord.length()) {
+					System.out.print(searchWord + ":" + "\t");
+					j = y;
+					for (int col = x + k - 1; col >= x; col--) {
+						System.out.print(" " + "(" + col + "," + j + ")");
+						k = 0;
+						j--;
+					}
+					j = 0;
+					System.out.println("");
+					found = searchWord;
+				}
+			}
 		}
 		return found;
 	}
