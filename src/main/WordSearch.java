@@ -14,7 +14,7 @@ public class WordSearch {
 			{ 'X', 'X', 'L', 'X', 'X', 'X', 'X', 'X', 'X' }, { 'X', 'A', 'X', 'X', 'X', 'X', 'X', 'X', 'X' } };
 
 	public static void main(String[] args) {
-		
+
 		System.out.println("LUKE, LEIA, HAN, OBIWAN, BAT, MAN, ALFRED, ROBIN");
 		display(puzzle);
 		System.out.println("");
@@ -55,4 +55,82 @@ public class WordSearch {
 		return found;
 	}
 
+	public static String RightToLeft(String searchWord) { // searches
+															// horizontally
+															// right to left
+		int k = 0;
+		for (int y = 0; y < puzzle.length; y++) {
+			for (int x = puzzle[y].length - 1; x >= 0; x--) {
+				if (searchWord.charAt(k) == puzzle[y][x]) {
+					k++;
+				} else {
+					k = 0;
+				}
+				if (k == searchWord.length()) {
+					System.out.print(searchWord + ":" + "\t");
+					for (int col = x + k - 1; col >= x; col--) {
+						System.out.print(" " + "(" + col + "," + y + ")");
+						k = 0;
+					}
+					System.out.println("");
+
+				}
+			}
+		}
+		return searchWord;
+	}
+
+	public static String Down(String searchWord) { // searches vertically down
+
+		int k = 0;
+		int j = 0;
+		String found = "";
+		for (int x = 0; x < puzzle[j].length; x++) {
+			for (int y = 0; y < puzzle.length; y++) {
+				if (searchWord.charAt(k) == puzzle[y][x]) {
+					k++;
+				} else {
+					k = 0;
+				}
+				if (k == searchWord.length()) {
+					System.out.print(searchWord + ":" + "\t");
+					for (int row = y - k + 1; row <= y; row++) {
+						System.out.print(" " + "(" + x + "," + row + ")");
+						k = 0;
+					}
+					System.out.println("");
+					found = searchWord; // variable used for jUnit test
+				}
+			}
+			j++;
+		}
+		return found;
+	}
+
+	public static String Up(String searchWord) { // searches vertically up
+
+		int k = 0;
+		int j = 0;
+		String found = "";
+		for (int x = 0; x < puzzle[j].length; x++) {
+			for (int y = puzzle[x].length - 1; y > 0; y--) {
+				if (searchWord.charAt(k) == puzzle[y][x]) {
+					k++;
+				} else {
+					k = 0;
+				}
+				if (k == searchWord.length()) {
+					System.out.print(searchWord + ":" + "\t");
+					for (int row = y + k - 1; row >= y; row--) {
+						System.out.print(" " + "(" + x + "," + row + ")");
+						k = 0;
+					}
+					System.out.println("");
+					found = searchWord; // variable used for jUnit test
+				}
+			}
+			j++;
+		}
+		return found;
+	}
 } // end class WordSearch

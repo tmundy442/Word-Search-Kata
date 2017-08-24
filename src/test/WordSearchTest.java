@@ -14,4 +14,25 @@ public class WordSearchTest {
 		String searchWord = underTest.LeftToRight("LUKE");
 		assertEquals("LUKE", searchWord);
 	}
+	@Test
+	public void findBackward() {
+		WordSearch underTest = new WordSearch();
+		String searchWord = underTest.RightToLeft("LEIA");
+		assertEquals("LEIA", searchWord);
+	}
+	
+	@Test
+	public void findDown() {
+		WordSearch underTest = new WordSearch();
+		String searchWord = underTest.Down("HAN");
+		assertEquals("HAN", searchWord);
+	}
+	
+	@Test
+	public void findUp() {
+		WordSearch underTest = new WordSearch();
+		String searchWord = underTest.Up("OBIWAN");
+		assertEquals("OBIWAN", searchWord);
+	}
+	
 }
