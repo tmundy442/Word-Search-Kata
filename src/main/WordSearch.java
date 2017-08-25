@@ -18,6 +18,29 @@ public class WordSearch {
 		System.out.println("LUKE, LEIA, HAN, OBIWAN, BAT, MAN, ALFRED, ROBIN");
 		display(puzzle);
 		System.out.println("");
+
+		ArrayList<String> wordList;
+
+		wordList = new ArrayList<String>();
+		wordList.add("LUKE");
+		wordList.add("LEIA");
+		wordList.add("HAN");
+		wordList.add("OBIWAN");
+		wordList.add("BAT");
+		wordList.add("MAN");
+		wordList.add("ALFRED");
+		wordList.add("ROBIN");
+
+		for (String searchWord : wordList) {
+			LeftToRight(searchWord);
+			RightToLeft(searchWord);
+			Down(searchWord);
+			Up(searchWord);
+			DownRight(searchWord);
+			DownLeft(searchWord);
+			UpRight(searchWord);
+			UpLeft(searchWord);
+		}
 	}
 
 	public static void display(char dis[][]) { // displays puzzle after header
@@ -35,6 +58,7 @@ public class WordSearch {
 		int k = 0;
 		String found = ""; // variable used for jUnit test
 		for (int y = 0; y < puzzle.length; y++) {
+			k = 0;
 			for (int x = 0; x < puzzle[y].length; x++) {
 				if (searchWord.charAt(k) == puzzle[y][x]) {
 					k++;
@@ -146,6 +170,9 @@ public class WordSearch {
 				if (searchWord.charAt(k) == puzzle[j][x]) {
 					k++;
 					j++;
+					if (j >= puzzle.length) {
+						break;
+					}
 				} else {
 					k = 0;
 					j = y;
@@ -160,7 +187,7 @@ public class WordSearch {
 					}
 					j = 0;
 					System.out.println("");
-					found = searchWord; 
+					found = searchWord;
 				}
 			}
 		}
@@ -168,7 +195,7 @@ public class WordSearch {
 	}
 
 	public static String DownLeft(String searchWord) { // searches diagonally
-		// down and left
+														// down and left
 		int k = 0;
 		int j = 0;
 		String found = "";// variable used for jUnit test
@@ -178,6 +205,9 @@ public class WordSearch {
 				if (searchWord.charAt(k) == puzzle[j][x]) {
 					k++;
 					j++;
+					if (j >= puzzle.length) {
+						break;
+					}
 				} else {
 					k = 0;
 					j = y;
@@ -200,7 +230,7 @@ public class WordSearch {
 	}
 
 	public static String UpRight(String searchWord) { // searches diagonally up
-		// and right
+														// and right
 		int k = 0;
 		int j = 0;
 		String found = "";// variable used for jUnit test
@@ -210,6 +240,9 @@ public class WordSearch {
 				if (searchWord.charAt(k) == puzzle[j][x]) {
 					k++;
 					j--;
+					if (j < 0) {
+						break;
+					}
 				} else {
 					k = 0;
 					j = y;
@@ -232,8 +265,7 @@ public class WordSearch {
 	}
 
 	public static String UpLeft(String searchWord) { // searches diagonally
-		// up and left
-
+														// up and left
 		int k = 0;
 		int j = 0;
 		String found = "";// variable used for jUnit test
@@ -243,6 +275,9 @@ public class WordSearch {
 				if (searchWord.charAt(k) == puzzle[j][x]) {
 					k++;
 					j--;
+					if (j < 0) {
+						break;
+					}
 				} else {
 					k = 0;
 					j = y;
